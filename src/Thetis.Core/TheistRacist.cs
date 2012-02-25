@@ -36,7 +36,7 @@ namespace Thetis.Core
                 if (split.Length == 1) host.SendToChannel(MessageType.Message, data.Channel, "You didnt supply an epithet.");
                 else
                 {
-                    throw new Exception("Test Exception");
+                    //throw new Exception("Test Exception");
                     //host.SendToChannel(MessageType.Message, data.Channel, "No, Drew fucks shit up. This is why you can't have nice things."); // TODO add admin support
                 }
 				/*
