@@ -34,6 +34,9 @@ namespace Thetis.Plugin
         public User SentFrom { get; set; }
         public String RawMessage { get; set; }
         public DateTime TimeReceived { get; set; }
+        /// <summary>
+        /// Boolean to check if the message was directed at the bot.
+        /// </summary>
         public bool Direct { get; set; }
         public String Channel { get; set; }
 

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThetisRoll.cs" />
     <Compile Include="ThetisFactoids.cs" />
     <Compile Include="ThetisSeen.cs" />
     <Compile Include="ThetisTell.cs" />
