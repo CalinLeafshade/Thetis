@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Servers>
+	<Server>
+		<Name>Sanctuary</Name>
+		<Host>svn.thethoughtradar.com</Host>
+		<Port>6667</Port>
+		<Nick>ThetisDev</Nick>		
+		<Channel>#sanctuary</Channel>		
+	</Server>		
+</Servers>
+

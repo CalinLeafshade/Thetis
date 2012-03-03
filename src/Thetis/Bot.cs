@@ -49,9 +49,16 @@ namespace Thetis
 
         public void AddPlugin(IThetisPlugin plugin)
         {
-            plugin.Host = this;
-            plugin.Init();
-            plugins.Add(plugin);
+			try 
+			{
+            	plugin.Host = this;
+            	plugin.Init();
+            	plugins.Add(plugin);
+			}
+			catch (Exception e)
+			{
+				manager.WriteToConsole(ConsoleColor.Red, "Plugin {0} failed to initialise. Error:{1}", plugin.Name, e.Message);	
+			}
         }
 
         public void AddServer(String address)

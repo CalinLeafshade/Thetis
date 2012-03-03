@@ -12,7 +12,7 @@ namespace Thetis
     {
 		
         Dictionary<String, Bot> bots = new Dictionary<string,Bot>();
-        List<Type> plugins = new List<Type>();
+        List<Plugin> plugins = new List<Plugin>();
         String mainPath;
         bool running;
         Listener listener = new Listener();
@@ -56,17 +56,18 @@ namespace Thetis
             
             XmlDocument config = new XmlDocument();
             config.Load("servers.xml");
+			
             foreach (XmlNode n in config.GetElementsByTagName("Server"))
             {
                 Bot b = new Bot(this);
-                foreach (XmlNode cn in n.ChildNodes)
+				foreach (XmlNode cn in n.ChildNodes)
                 {
                     switch (cn.Name)
                     {
                         case "Name":
                             b.Name = cn.InnerText;
                             break;
-                        case "Address":
+                        case "Host":
                             b.AddServer(cn.InnerText);
                             break;
                         case "Port":
@@ -122,6 +123,12 @@ namespace Thetis
 
             }
         }
+		
+		public void ReloadPlugin(String name)
+		{
+			
+			
+		}
 
         void connectServers()
         {
@@ -225,7 +232,8 @@ namespace Thetis
 
             	}
 			}
-
+			
+			listener.Stop();
             killServers();
 
             

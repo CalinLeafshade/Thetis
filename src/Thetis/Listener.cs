@@ -67,6 +67,8 @@ namespace Thetis
         public void Stop()
         {
             running = false;
+			listener.Stop();
+			
         }
 
         public void ListenThread()
@@ -75,7 +77,15 @@ namespace Thetis
             listener.Start();
             while (running)
             {
-                TcpClient client = listener.AcceptTcpClient();
+				TcpClient client;
+				try
+				{
+                	client = listener.AcceptTcpClient();
+				}
+				catch 
+				{
+					return;
+				}
                 StreamReader stream = new StreamReader(client.GetStream());
                 StringBuilder sb = new StringBuilder();
                 

@@ -9,7 +9,7 @@ namespace Thetis.Core
 	{
 		
 		IThetisPluginHost host;
-		HttpWebRequest requester;
+		
 		
 		public ThetisQuote ()
 		{
