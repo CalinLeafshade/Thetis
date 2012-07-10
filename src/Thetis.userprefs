@@ -1,0 +1,40 @@
+﻿<Properties GitUserInfo="UsingMD">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Thetis.Core/ThetisTime.cs">
+    <Files>
+      <File FileName="Thetis.Google/ThetisSearch.cs" Line="60" Column="4" />
+      <File FileName="Thetis/servers.xml" Line="1" Column="1" />
+      <File FileName="Thetis/Bot.cs" Line="1" Column="1" />
+      <File FileName="Thetis/BotManager.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/ThetisRemind.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/ThetisQuote.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/ThetisTell.cs" Line="1" Column="1" />
+      <File FileName="Thetis/Listener.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/ThetisWordwar.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/Utilities.cs" Line="27" Column="49" />
+      <File FileName="Thetis/Plugin.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/ThetisRacist.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/ThetisSad.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Plugin/IStat.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/ThetisFactoids.cs" Line="144" Column="13" />
+      <File FileName="Thetis.Plugin/MessageData.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/ThetisRoll.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Plugin/IThetisPlugin.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Plugin/IThetisPluginHost.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Plugin/PluginResponse.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Plugin/User.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/ThetisAbbri.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/ThetisChoose.cs" Line="1" Column="1" />
+      <File FileName="IrcLib/IrcClient/BanInfo.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/ThetisPilk.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/ThetisSeen.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/ThetisTime.cs" Line="267" Column="59" />
+      <File FileName="Thetis.Games/ThetisCountdown.cs" Line="1" Column="1" />
+      <File FileName="Thetis.Core/DateTimeRoutines.cs" Line="47" Column="36" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

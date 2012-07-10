@@ -2,7 +2,7 @@ using System;
 
 namespace Thetis
 {
-	public class Plugin
+	public class PluginReference
 	{
 		public String Filename {get; set;}
 		public Type PluginType {get; set;}

@@ -24,7 +24,7 @@ namespace Thetis
 	
     class Bot : IThetisPluginHost
     {
-
+		
         public bool Connected { get; set; }
         public String Name { get; set; }
         public int Port { get; set; }
@@ -46,7 +46,13 @@ namespace Thetis
         {
             manager = bm;
         }
-
+		
+		public void ReloadPlugin(IThetisPlugin plugin)
+		{
+			manager.ReloadPlugin(plugin);
+		}
+		
+		
         public void AddPlugin(IThetisPlugin plugin)
         {
 			try 
@@ -60,6 +66,15 @@ namespace Thetis
 				manager.WriteToConsole(ConsoleColor.Red, "Plugin {0} failed to initialise. Error:{1}", plugin.Name, e.Message);	
 			}
         }
+
+		public void SortPlugins ()
+		{
+			plugins.Sort((plugin1,plugin2) =>
+    			{	
+        			return Comparer<Int32>.Default.Compare(plugin1.Priority, plugin2.Priority);
+    			}
+			);
+		}
 
         public void AddServer(String address)
         {

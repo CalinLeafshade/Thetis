@@ -12,7 +12,7 @@ namespace Thetis
     {
 		
         Dictionary<String, Bot> bots = new Dictionary<string,Bot>();
-        List<Plugin> plugins = new List<Plugin>();
+        List<PluginReference> plugins = new List<PluginReference>();
         String mainPath;
         bool running;
         Listener listener = new Listener();
@@ -84,15 +84,16 @@ namespace Thetis
 
                     }
                 }
-                foreach (Type t in plugins)
+                foreach (PluginReference pr in plugins)
                 {
-                    ConstructorInfo ctor = t.GetConstructor(Type.EmptyTypes);
+                    ConstructorInfo ctor = pr.PluginType.GetConstructor(Type.EmptyTypes);
                     if (ctor == null)
                     {
                         //blam
                     }
                     else b.AddPlugin((IThetisPlugin)ctor.Invoke(null));
                 }
+				b.SortPlugins();
                 bots.Add(b.Name, b);
             }
             
@@ -113,8 +114,11 @@ namespace Thetis
                             
                             if (iface == typeof(IThetisPlugin))
                             {
-                                WriteToConsole(ConsoleColor.Cyan, "Adding plugin {0}", t.Name);
-								plugins.Add(t);
+								WriteToConsole(ConsoleColor.Cyan, "Adding plugin {0}", t.Name);
+								PluginReference pr = new PluginReference();
+								pr.Filename = s;
+								pr.PluginType = t;
+								plugins.Add(pr);
                                 break;
                             }
                         }
@@ -124,10 +128,25 @@ namespace Thetis
             }
         }
 		
-		public void ReloadPlugin(String name)
+
+		
+		public void ReloadPlugin(IThetisPlugin plugin)
 		{
-			
-			
+			Type t = plugin.GetType();
+			String assemblyFile = "";
+			for (int i = plugins.Count - 1; i >= 0; i--) 
+			{
+				if (plugins[i].PluginType == t)
+				{
+					assemblyFile = plugins[i].Filename;
+					plugins.RemoveAt(i);
+					
+				}
+			}
+			if (assemblyFile != "")
+			{
+				//TODO BLAHHHH FINISH THIS
+			}
 		}
 
         void connectServers()

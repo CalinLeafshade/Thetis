@@ -37,6 +37,12 @@ namespace Thetis.Core
 		}
 
 		#region IThetisPlugin implementation
+		
+		public int Priority 
+		{
+			get { return 0;}
+		}
+		
 		public PluginResponse ChannelMessageReceived (MessageData data)
 		{
 

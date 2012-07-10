@@ -99,7 +99,9 @@ namespace Thetis.Core
 
     public class ThetisTell :IThetisPlugin 
     {
-
+		
+		
+		
         List<Message> messages = new List<Message>();
         DateTime lastSaved;
 
@@ -120,7 +122,10 @@ namespace Thetis.Core
             get { return true; }
         }
 
-
+		public int Priority 
+		{
+			get { return 0;}
+		}
 
         public PluginResponse ChannelMessageReceived(MessageData data)
         {

@@ -13,7 +13,12 @@ namespace Thetis
         Dictionary<String, String> lastSaid = new Dictionary<string, String>();
 
         IThetisPluginHost host;
-
+		
+		public int Priority 
+		{
+			get { return 0;}
+		}
+		
         public string Name
         {
             get { return "Seen"; }

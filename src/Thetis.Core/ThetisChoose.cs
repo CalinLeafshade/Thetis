@@ -3,6 +3,9 @@ using Thetis.Plugin;
 
 namespace Thetis.Core
 {
+	/// <summary>
+	/// Chooses values from an ' or ' delimitered list.
+	/// </summary>
 	public class ThetisChoose : IThetisPlugin
 	{
 		public ThetisChoose ()
@@ -12,6 +15,12 @@ namespace Thetis.Core
         Random random = new Random();
 
 		#region IThetisPlugin implementation
+		
+		public int Priority 
+		{
+			get { return 0;}
+		}
+		
 		public PluginResponse ChannelMessageReceived (MessageData data)
 		{
             PluginResponse toReturn = new PluginResponse();

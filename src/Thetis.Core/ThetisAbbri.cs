@@ -6,6 +6,9 @@ using System.IO;
 
 namespace Thetis.Core
 {
+	/// <summary>
+	/// Gets abbreviations from abbreviations.com
+	/// </summary>
 	public class ThetisAbbri : IThetisPlugin
 	{
 		public ThetisAbbri ()
@@ -15,7 +18,7 @@ namespace Thetis.Core
 		public String GetHelp(String command)
 		{
 			command = command.Trim().ToLower();
-			if (command == "abbri") return "Gets an abbriviation from abbriviations.com. Usage: abbri <abbriviation>";
+			if (command == "abbri") return "Gets an abbreviation from abbreviations.com. Usage: abbri <abbreviation>";
 			return null;
 		}
 		
@@ -52,6 +55,13 @@ namespace Thetis.Core
 		}
 		
 		#region IThetisPlugin implementation
+		
+		public int Priority 
+		{
+			get { return 0;}
+		}
+			
+		
 		public PluginResponse ChannelMessageReceived (MessageData data)
 		{
 

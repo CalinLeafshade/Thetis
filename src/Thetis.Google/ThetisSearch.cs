@@ -53,6 +53,12 @@ namespace Thetis.Google
 		}
 		
 		#region IThetisPlugin implementation
+		
+		public int Priority 
+		{
+			get { return 0;}
+		}
+		
 		public PluginResponse ChannelMessageReceived (MessageData data)
 		{
             PluginResponse toReturn = new PluginResponse();

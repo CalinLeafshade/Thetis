@@ -21,6 +21,15 @@ namespace Thetis.Core
 			command = command.Trim().ToLower();
 			if (command == "forget") return "Forgets a factoid. Usage: forget <fact name>";
 			return null;
+			
+		}
+		
+		public int Priority 
+		{
+			get 
+			{
+				return Int32.MaxValue;
+			}
 		}
 		
         public string Name
@@ -41,6 +50,7 @@ namespace Thetis.Core
 
 		private String formatFact(String name, String fact, string sender)
 		{
+			
 			String toReturn = "";
 			if (!fact.Trim().ToLower().StartsWith("<reply>"))
 			{
@@ -86,6 +96,7 @@ namespace Thetis.Core
 					if (s.StartsWith("$") && s.Length > 1)  regex += "[\\w]+";
 					else regex += Regex.Escape(s);
 				}
+					
                 MatchCollection mc = Regex.Matches(message.ToLower(), regex);
                 if (mc.Count > 0 && mc[0].Value == message.ToLower()) {
 					string[] nameTokens = message.Split(' ');

@@ -54,6 +54,7 @@
     <Compile Include="ThetisRemind.cs" />
     <Compile Include="ThetisRacist.cs" />
     <Compile Include="Utilities.cs" />
+    <Compile Include="DateTimeRoutines.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Thetis.Plugin\Thetis.Plugin.csproj">
