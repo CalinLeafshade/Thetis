@@ -2,7 +2,7 @@
 <Servers>
 	<Server>
 		<Name>Sanctuary</Name>
-		<Host>svn.thethoughtradar.com</Host>
+		<Host>irc.sanctuary-interactive.com</Host>
 		<Port>6667</Port>
 		<Nick>ThetisDev</Nick>		
 		<Channel>#sanctuary</Channel>		

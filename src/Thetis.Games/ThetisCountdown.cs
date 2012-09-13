@@ -151,13 +151,15 @@ namespace Thetis.Games
 			}
 			else 
 			{
-				KeyValuePair<String, int> best;
+                KeyValuePair<String, int> best = new KeyValuePair<string,int>();
+                bool first = true;
 				foreach (KeyValuePair<String, int> kvp in guesses)
 				{
-					if (best.Key == null) 
-					{
-						best = kvp;
-					}
+                    if (first)
+                    {
+                        best = kvp;
+                        first = false;
+                    }
 					else 
 					{
 						if (Math.Abs(kvp.Value - activeRound.Total) < Math.Abs(best.Value - activeRound.Total)) best = kvp;	

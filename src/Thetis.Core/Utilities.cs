@@ -52,7 +52,7 @@ namespace Thetis.Core
 				if (ts.Seconds > 1) sb.Append("s");
 
             }
-            
+            if (sb.Length == 0) sb.Append("no time at all.");
             return sb.ToString();
 		}
 		
