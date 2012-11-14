@@ -69,7 +69,6 @@
   </Target>
   -->
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="servers.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
