@@ -164,16 +164,15 @@ namespace Thetis.Core
         /// <param name="channel">The relevant channel</param>
         private void tell(string who, string channel)
         {
-            for (int i = messages.Count - 1; i >= 0; i--)
+            for (int i = 0, max = messages.Count; i < max; i++)
             {
                 if (messages[i].For.ToLower() == who.ToLower() && !messages[i].Said)
                 {
                     messages[i].Said = true;
                     host.SendToChannel(MessageType.Message, channel, messages[i].ToString());
-                    messages.RemoveAt(i);
                 }
             }
-            
+            messages.RemoveAll(item => item.Said == true);
         }
 
         private void addMessage(string who, string name, string message)
