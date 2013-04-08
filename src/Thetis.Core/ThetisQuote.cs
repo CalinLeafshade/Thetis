@@ -38,7 +38,7 @@ namespace Thetis.Core
 
 			byte[]        buf = new byte[8192];
 	
-			String url = "http://irc.thethoughtradar.com/qdb/thetis.php";
+			String url = "http://sanctuary-interactive.com/~steve/qdb/thetis.php";
 			if (searchString != null && searchString != "") {
 				searchString = searchString.Replace(" ", "%20");	
 				url += "?s=" + searchString;
