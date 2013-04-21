@@ -73,6 +73,9 @@ namespace Thetis
                         case "Port":
                             b.Port = Int32.Parse(cn.InnerText);
                             break;
+                        case "Admin":
+                            b.Admin = cn.InnerText;
+                            break;
                         case "Channel":
                             b.AddChannel(cn.InnerText);
                             break;

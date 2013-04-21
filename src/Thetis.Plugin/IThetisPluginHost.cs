@@ -8,7 +8,11 @@ namespace Thetis.Plugin
 	/// The type of message tobe sent to a channel.
 	/// </summary>
     public enum MessageType { Message, Action, Notice };
-	
+
+    /// <summary>
+    /// Nickserv status enum
+    /// </summary>
+    public enum NickservStatus { NotRegisteredOrNotOnline, NotIdentified, RecognizedByAccessList, RecognizedByPassword }
 	/// <summary>
 	/// An interface for the plugin host for a bot.
 	/// </summary>
@@ -21,7 +25,21 @@ namespace Thetis.Plugin
 		/// The name of the server.
 		/// </value>
         String ServerName { get; }
-		
+
+        /// <summary>
+        /// Check if a user has admin rights
+        /// </summary>
+        /// <param name="nick">The nick to check</param>
+        /// <returns></returns>
+        bool IsAdmin(string nick);
+
+        /// <summary>
+        /// Get the nickserv status of a certain nick       
+        /// </summary>
+        /// <param name="nick">The Nick for which the status is required.</param>
+        /// <returns></returns>
+        NickservStatus GetNickservStatus(String nick);
+
 		/// <summary>
 		/// Gets the root plugin path for plugin data.
 		/// </summary>
@@ -29,7 +47,21 @@ namespace Thetis.Plugin
 		/// The path.
 		/// </returns>
         String GetPluginPath();
-		
+
+        /// <summary>
+        /// Approves a nick as a genuine member
+        /// </summary>
+        /// <param name="nick">The nick to approve</param>
+        /// <returns>If the approval was successful</returns>
+        bool ApproveNick(string nick);
+
+        /// <summary>
+        /// Checks if a nick is approved as a member
+        /// </summary>
+        /// <param name="nick">Nick to check</param>
+        /// <returns></returns>
+        bool IsNickApproved(string nick);
+
 		/// <summary>
 		/// Sends a message to a channel.
 		/// </summary>

@@ -14,6 +14,7 @@ namespace Thetis.Core
         public String Text;
         public String For;
         public DateTime When;
+        public bool Authorized;
         public bool Said;
 
         public override string ToString()
@@ -39,16 +40,17 @@ namespace Thetis.Core
                 sb.Append(String.Format("{0} seconds", ts.Seconds));
 
             }
-            sb.Append(" ago.");
-            return String.Format("{0}, {1} told me to tell you [{2}], {3}", For, From, sb.ToString(), Text);
+            sb.Append(" ago");
+            return String.Format("{0}, {1} told me to tell you: \"{2}\" [{3}, {4}]", For, From, Text, sb.ToString(), Authorized ? "Authorized" : "Unauthorized");
         }
 
-        public Message(String from, String ffor, String text)
+        public Message(String from, String ffor, String text, bool authorized)
         {
             From = from;
             For = ffor;
             Text = text;
             When = DateTime.Now;
+            Authorized = authorized;
             Said = false;
         }
 
@@ -63,6 +65,9 @@ namespace Thetis.Core
                         break;
                     case "For":
                         For = n.InnerText;
+                        break;
+                    case "Authorized":
+                        Authorized = n.InnerText == "True";
                         break;
                     case "Text":
                         Text = n.InnerText;
@@ -134,6 +139,16 @@ namespace Thetis.Core
 
             tell(data.SentFrom.Nick, data.Channel);
 
+            if (data.Direct && data.LowerCaseMessage.StartsWith("nick "))
+            {
+                string[] spl = data.LowerCaseMessage.Split(' ');
+                if (spl.Length > 1)
+                {
+                    NickservStatus s = host.GetNickservStatus(spl[1]);
+                    host.SendToChannel(MessageType.Message, data.Channel, String.Format("{0} is {1}", spl[1], s.ToString()));
+                }
+            }
+
             if (data.Direct && data.LowerCaseMessage.StartsWith("tell "))
             {
                 toReturn.Claimed = true;
@@ -177,7 +192,8 @@ namespace Thetis.Core
 
         private void addMessage(string who, string name, string message)
         {
-            messages.Add(new Message(who, name, message));
+            bool au = host.GetNickservStatus(who) == NickservStatus.RecognizedByPassword;
+            messages.Add(new Message(who, name, message, au));
             Save();
         }
 		

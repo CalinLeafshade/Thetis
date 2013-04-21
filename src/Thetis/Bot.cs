@@ -28,6 +28,7 @@ namespace Thetis
         public bool Connected { get; set; }
         public String Name { get; set; }
         public int Port { get; set; }
+        public string Admin { get; set; }
 		System.Timers.Timer pluginTicker = new System.Timers.Timer();
 				
         bool running = true;
@@ -36,7 +37,8 @@ namespace Thetis
         List<String> channels = new List<string>();
         List<String> nicks = new List<string>();
         List<IThetisPlugin> plugins = new List<IThetisPlugin>();
-        
+        Nickserv nickserv;
+
 		List<Command> commands = new List<Command>();
 		
         IrcClient client;
@@ -45,6 +47,7 @@ namespace Thetis
         public Bot(BotManager bm)
         {
             manager = bm;
+            nickserv = new Nickserv(this);
         }
 		
 		public void ReloadPlugin(IThetisPlugin plugin)
@@ -52,6 +55,7 @@ namespace Thetis
 			manager.ReloadPlugin(plugin);
 		}
 		
+        
 		
         public void AddPlugin(IThetisPlugin plugin)
         {
@@ -124,6 +128,8 @@ namespace Thetis
             client.OnJoin += new JoinEventHandler(client_OnJoin);
             client.OnChannelMessage += new IrcEventHandler(client_OnChannelMessage);
             client.OnDisconnected += new EventHandler(client_OnDisconnected);
+            client.OnQueryMessage += new IrcEventHandler(client_OnQueryMessage);
+            client.OnQueryNotice += new IrcEventHandler(client_OnQueryNotice);
             
             client.Connect(servers.ToArray(), Port);
             
@@ -133,10 +139,26 @@ namespace Thetis
 			pluginTicker.Interval = 1000;
 			pluginTicker.Elapsed += HandlePluginTickerElapsed;
 			pluginTicker.Start();
-
-            client.Listen();
             
+            client.Listen();
+            nickserv.QueryNickServ();
 
+        }
+
+        void client_OnQueryNotice(object sender, IrcEventArgs e)
+        {
+            if (e.Data.Nick != null && e.Data.Nick.ToLower() == "nickserv")
+            {
+                nickserv.QueryReceived(e.Data.Message);
+            }
+        }
+
+        void client_OnQueryMessage(object sender, IrcEventArgs e)
+        {
+            if (e.Data.Nick.ToLower() == "nickserv")
+            {
+                nickserv.QueryReceived(e.Data.Message);
+            }
         }
 
         void HandlePluginTickerElapsed (object sender, System.Timers.ElapsedEventArgs e)
@@ -307,7 +329,8 @@ namespace Thetis
 
         public void WriteToConsole(IThetisPlugin from, string message)
         {
-			manager.WriteToConsole(ConsoleColor.Cyan, "Plugin - {0} - {1}", from.Name, message);
+            string f = from == null ? "Null" : from.Name;
+			manager.WriteToConsole(ConsoleColor.Cyan, "Plugin - {0} - {1}", f, message);
         }
 	
 		public void RegisterCommand (IThetisPlugin from, string command)
@@ -339,6 +362,31 @@ namespace Thetis
         public void Inject(string channel, string message)
         {
             client.SendMessage(SendType.Message, channel, message);
+        }
+
+
+        public NickservStatus GetNickservStatus(string nick)
+        {
+            return nickserv.GetStatus(nick);
+        }
+
+        
+
+
+        public bool IsAdmin(string nick)
+        {
+            return (nick.ToLower() == Admin.ToLower() && nickserv.GetStatus(nick) == NickservStatus.RecognizedByPassword);
+        }
+
+
+        public bool ApproveNick(string nick)
+        {
+            return nickserv.ApproveNick(nick);
+        }
+
+        public bool IsNickApproved(string nick)
+        {
+            return nickserv.IsNickApproved(nick);
         }
     }
 }

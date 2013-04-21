@@ -39,7 +39,7 @@
     <Compile Include="ThetisCountdown.cs" />
     <Compile Include="ThetisSteam.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Thetis.Core\Thetis.Core.csproj">
       <Project>{105C794C-3785-47EB-87A7-2A9B8255A3AC}</Project>

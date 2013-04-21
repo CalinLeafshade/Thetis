@@ -36,29 +36,38 @@ namespace Thetis.Core
 		{
             PluginResponse toReturn = new PluginResponse();
 
-			if (data.Direct && data.LowerCaseMessage.StartsWith("epithet")) 
-			{
-				string[] split = data.LowerCaseMessage.Split(' ');
-                if (split.Length == 1) host.SendToChannel(MessageType.Message, data.Channel, "You didnt supply an epithet.");
+            if (data.Direct && data.LowerCaseMessage.StartsWith("epithet"))
+            {
+                toReturn.Claimed = true;
+                string[] split = data.LowerCaseMessage.Split(' ');
+                if (split.Length == 1)
+                {
+                    host.SendToChannel(MessageType.Message, data.Channel, "You didnt supply an epithet.");
+                }
+                else if (!host.IsAdmin(data.SentFrom.Nick))
+                {
+                    host.SendToChannel(MessageType.Message, data.Channel, "You are not admin.");
+                }
+                else if (addEpithet(split[1]))
+                {
+                    host.SendToChannel(MessageType.Message, data.Channel, "Ok I've added that you fucking racist.");
+                }
                 else
                 {
-                    //throw new Exception("Test Exception");
-                    //host.SendToChannel(MessageType.Message, data.Channel, "No, Drew fucks shit up. This is why you can't have nice things."); // TODO add admin support
+                    host.SendToChannel(MessageType.Message, data.Channel, "That is already in the db.");
                 }
-				/*
-				else if (addEpithet(split[1]))
-				{
-					return "Ok I've added that you fucking racist.";
-				}
-				else return "That is already in the db.";
-				*/
-			}
-			foreach(String s in epithets){
-				if (data.LowerCaseMessage.Contains(s)) 
-				{
-					host.SendToChannel(MessageType.Message, data.Channel, String.Format("Shocking amounts of racism there from {0}", data.SentFrom.Nick));	
-				}
-			}
+            }
+            else
+            {
+                foreach (String s in epithets)
+                {
+                    if (data.LowerCaseMessage.Contains(s))
+                    {
+                        host.SendToChannel(MessageType.Message, data.Channel, String.Format("Shocking amounts of racism there from {0}", data.SentFrom.Nick));
+                    }
+                }
+            }
+
             return toReturn;
 		}
 

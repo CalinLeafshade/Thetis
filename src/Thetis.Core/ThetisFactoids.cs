@@ -135,6 +135,7 @@ namespace Thetis.Core
                 {
                     addFact(s);
                 }
+                sr.Close();
             }
             lastSaved = DateTime.Now;
         }

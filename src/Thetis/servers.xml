@@ -4,7 +4,8 @@
 		<Name>Sanctuary</Name>
 		<Host>irc.sanctuary-interactive.com</Host>
 		<Port>6667</Port>
-		<Nick>ThetisDev</Nick>		
+		<Nick>ThetisDev</Nick>
+    <Admin>CalinLeafshade</Admin>
 		<Channel>#sanctuary</Channel>		
 	</Server>		
 </Servers>
