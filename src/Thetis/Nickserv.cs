@@ -108,7 +108,7 @@ namespace Thetis
                 }
                 if (split[1] == "[Hidden]")
                 {
-                    nicks.Add(split[0]);
+                    if (!nicks.Contains(split[0])) nicks.Add(split[0]);
                 }
             }
             catch
